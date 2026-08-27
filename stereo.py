@@ -38,3 +38,13 @@ if depth is not None:
     print(f"Depth at pixel ({x}, {y}): {depth:.2f} cm")
 else:
     print(f"No valid disparity at pixel ({x}, {y}), try another point")
+
+left_view = cv2.resize(left_img, (700, 700))
+gray_view = cv2.resize(disp_view, (700, 700))
+color_view = cv2.resize(disp_color, (700, 700))
+
+cv2.imshow('Left Image', left_view)
+cv2.imshow('Disparity (gray)', gray_view)
+cv2.imshow('Disparity (color)', color_view)
+cv2.waitKey(0)
+cv2.destroyAllWindows()    
