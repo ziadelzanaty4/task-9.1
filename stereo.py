@@ -23,3 +23,18 @@ disp_view = np.uint8(disp_view)
 cv2.imwrite('disparity_gray.png', disp_view)
 disp_color = cv2.applyColorMap(disp_view, cv2.COLORMAP_JET)
 cv2.imwrite('disparity_color.png', disp_color)
+
+def get_depth(disp_map, x, y, fx, baseline, doffs):
+    d = disp_map[y, x]
+    if d <= 0:
+        return None
+    return (fx * baseline) / (d + doffs)
+
+x = 300
+y = 100
+depth = get_depth(disparity, x, y, fx, baseline, doffs)
+
+if depth is not None:
+    print(f"Depth at pixel ({x}, {y}): {depth:.2f} cm")
+else:
+    print(f"No valid disparity at pixel ({x}, {y}), try another point")
