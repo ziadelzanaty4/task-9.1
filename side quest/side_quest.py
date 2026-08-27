@@ -30,9 +30,9 @@ if __name__ == "__main__":
     input_path = sys.argv[1] if len(sys.argv) > 1 else "input_image.png"
     output_path = sys.argv[2] if len(sys.argv) > 2 else "output_image.png"
 
-    img = cv2.imread(input_path)
+    img = cv2.imread('side quest/input_image.png')
     corrected = correct_colors(img)
 
     stacked = np.hstack([img, corrected])
-    cv2.imwrite(output_path, corrected)
-    cv2.imwrite("comparison.png", stacked)
+    cv2.imwrite('side quest/output_image.png', corrected)
+    cv2.imwrite("side quest/comparison.png", stacked)
