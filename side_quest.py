@@ -11,3 +11,12 @@ def gray_world_white_balance(img):
     g = np.clip(g * (k / g_avg), 0, 255)
     r = np.clip(r * (k / r_avg), 0, 255)
     return cv2.merge([b, g, r]).astype(np.uint8)
+
+
+def apply_clahe(img):
+    lab = cv2.cvtColor(img, cv2.COLOR_BGR2LAB)
+    l, a, b = cv2.split(lab)
+    clahe = cv2.createCLAHE(clipLimit=2.5, tileGridSize=(8, 8))
+    l = clahe.apply(l)
+    lab = cv2.merge([l, a, b])
+    return cv2.cvtColor(lab, cv2.COLOR_LAB2BGR)
