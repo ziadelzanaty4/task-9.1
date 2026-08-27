@@ -20,3 +20,8 @@ def apply_clahe(img):
     l = clahe.apply(l)
     lab = cv2.merge([l, a, b])
     return cv2.cvtColor(lab, cv2.COLOR_LAB2BGR)
+
+def correct_colors(img):
+    wb = gray_world_white_balance(img)
+    result = apply_clahe(wb)
+    return result
